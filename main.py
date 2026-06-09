@@ -206,10 +206,25 @@ def build_v2rayng(cache):
     for name, data in cache.items():
         p = data["config"]
 
+        # ---------------- VLESS ----------------
         if p["type"] == "vless":
-            link = f"vless://{p['uuid']}@{p['server']}:{p['port']}?security={'tls' if p.get('tls') else 'none'}#{p['name']}"
+            link = f"vless://{p['uuid']}@{p['server']}:{p['port']}"
+
+            params = []
+
+            if p.get("tls"):
+                params.append("security=tls")
+            else:
+                params.append("security=none")
+
+            params.append("type=tcp")
+
+            link += "?" + "&".join(params)
+            link += f"#{p['name']}"
+
             lines.append(link)
 
+        # ---------------- VMESS ----------------
         elif p["type"] == "vmess":
             vm = {
                 "v": "2",
@@ -217,13 +232,20 @@ def build_v2rayng(cache):
                 "add": p["server"],
                 "port": str(p["port"]),
                 "id": p["uuid"],
+                "aid": "0",
                 "net": "tcp",
+                "type": "none",
+                "host": "",
+                "path": "",
                 "tls": "tls" if p.get("tls") else ""
             }
-            encoded = base64.b64encode(json.dumps(vm).encode()).decode()
-            lines.append("vmess://" + encoded)
 
-    return base64.b64encode("\n".join(lines).encode()).decode()
+            import json
+            raw = base64.b64encode(json.dumps(vm).encode()).decode()
+            lines.append("vmess://" + raw)
+
+    # ✅ مهم: RAW subscription (نه double base64)
+    return "\n".join(lines)
 
 
 # -------------------------
