@@ -5,25 +5,40 @@ on:
   schedule:
     - cron: "0 * * * *"
 
+permissions:
+  contents: write   # 👈 خیلی مهم برای اجازه push
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 👈 مهم برای جلوگیری از conflict
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      - run: pip install requests pyyaml
+      - name: Install dependencies
+        run: pip install requests pyyaml
 
-      - run: python main.py
+      - name: Run builder
+        run: python main.py
 
-      - name: commit
+      - name: Commit and push safely
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+
           git add clash.yaml
-          git commit -m "update" || echo "no changes"
-          git push
+
+          git commit -m "update" || exit 0
+
+          # 👇 مهم‌ترین بخش (جلوگیری از push conflict)
+          git pull --rebase origin main || true
+
+          git push origin main
