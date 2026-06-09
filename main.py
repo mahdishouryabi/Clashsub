@@ -201,51 +201,46 @@ def build_clash(cache):
 # V2RAYNG (FIXED)
 # -------------------------
 def build_v2rayng(cache):
-    lines = []
+    merged = {}
 
     for name, data in cache.items():
         p = data["config"]
 
         # ---------------- VLESS ----------------
         if p["type"] == "vless":
-            link = f"vless://{p['uuid']}@{p['server']}:{p['port']}"
+            key = f"vless:{p['server']}:{p['port']}:{p['uuid']}"
 
-            params = []
+            link = (
+                f"vless://{p['uuid']}@{p['server']}:{p['port']}"
+                f"?type=tcp"
+                f"&security={'tls' if p.get('tls') else 'none'}"
+                f"#{p['name']}"
+            )
 
-            if p.get("tls"):
-                params.append("security=tls")
-            else:
-                params.append("security=none")
-
-            params.append("type=tcp")
-
-            link += "?" + "&".join(params)
-            link += f"#{p['name']}"
-
-            lines.append(link)
+            merged[key] = link
 
         # ---------------- VMESS ----------------
         elif p["type"] == "vmess":
+            key = f"vmess:{p['server']}:{p['port']}:{p['uuid']}"
+
+            import json, base64
+
             vm = {
                 "v": "2",
                 "ps": p["name"],
                 "add": p["server"],
                 "port": str(p["port"]),
                 "id": p["uuid"],
-                "aid": "0",
                 "net": "tcp",
-                "type": "none",
-                "host": "",
-                "path": "",
                 "tls": "tls" if p.get("tls") else ""
             }
 
-            import json
-            raw = base64.b64encode(json.dumps(vm).encode()).decode()
-            lines.append("vmess://" + raw)
+            merged[key] = "vmess://" + base64.b64encode(
+                json.dumps(vm).encode()
+            ).decode()
 
-    # ✅ مهم: RAW subscription (نه double base64)
-    return "\n".join(lines)
+    # خروجی نهایی بدون تکرار
+    return "\n".join(merged.values())
 
 
 # -------------------------
