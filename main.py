@@ -9,9 +9,11 @@ from urllib.parse import urlparse, parse_qs
 
 CACHE_FILE = "cache.json"
 
-TEST_URL = "http://www.gstatic.com/generate_204"
+TEST_TIMEOUT = 3
 FAIL_THRESHOLD = 3
-TIMEOUT = 3
+MIN_KEEP = 10  # همیشه حداقل ۱۰ کانفیگ نگه دار
+
+TEST_URL = "http://www.gstatic.com/generate_204"
 
 
 # -------------------------
@@ -20,10 +22,12 @@ TIMEOUT = 3
 def load_cache():
     if os.path.exists(CACHE_FILE):
         try:
-            return json.load(open(CACHE_FILE))
+            with open(CACHE_FILE, "r") as f:
+                return json.load(f)
         except:
             return {}
     return {}
+
 
 def save_cache(cache):
     tmp = CACHE_FILE + ".tmp"
@@ -33,23 +37,25 @@ def save_cache(cache):
 
 
 # -------------------------
-# SUB FETCH
+# FETCH
 # -------------------------
 def fetch_sub(url):
     try:
         r = requests.get(url, timeout=15)
+        if r.status_code != 200:
+            return []
         return [x.strip() for x in r.text.splitlines() if x.strip()]
     except:
         return []
 
 
 # -------------------------
-# TEST
+# TEST (SOFT)
 # -------------------------
 def test_server(host, port):
     try:
         s = socket.socket()
-        s.settimeout(TIMEOUT)
+        s.settimeout(TEST_TIMEOUT)
         s.connect((host, port))
         s.close()
         return True
@@ -98,7 +104,7 @@ def parse_vmess(link, name):
 
 
 # -------------------------
-# CACHE UPDATE
+# CACHE UPDATE (FIXED)
 # -------------------------
 def update_cache(cache, proxies):
     new_cache = cache.copy()
@@ -110,11 +116,11 @@ def update_cache(cache, proxies):
             new_cache[name] = {
                 "fail": 0,
                 "config": p,
-                "last_good": 0
+                "last_good": 0,
+                "last_seen": int(time.time())
             }
 
         entry = new_cache[name]
-
         ok = test_server(p["server"], p["port"])
 
         if ok:
@@ -124,8 +130,16 @@ def update_cache(cache, proxies):
         else:
             entry["fail"] += 1
 
-        if entry["fail"] >= FAIL_THRESHOLD:
-            del new_cache[name]
+        entry["last_seen"] = int(time.time())
+
+    # ❌ فقط اگر خیلی خراب شد حذف کن، ولی حداقل ۱۰ تا نگه دار
+    if len(new_cache) > MIN_KEEP:
+        to_delete = [
+            k for k, v in new_cache.items()
+            if v["fail"] >= FAIL_THRESHOLD
+        ]
+        for k in to_delete:
+            del new_cache[k]
 
     return new_cache
 
@@ -168,7 +182,7 @@ def build_clash(cache):
                 "type": "url-test",
                 "proxies": names,
                 "url": TEST_URL,
-                "interval": 300
+                "interval": 120
             },
             {
                 "name": "SELECT",
@@ -184,7 +198,7 @@ def build_clash(cache):
 
 
 # -------------------------
-# V2RAYNG BUILDER
+# V2RAYNG (FIXED)
 # -------------------------
 def build_v2rayng(cache):
     lines = []
@@ -193,7 +207,7 @@ def build_v2rayng(cache):
         p = data["config"]
 
         if p["type"] == "vless":
-            link = f'vless://{p["uuid"]}@{p["server"]}:{p["port"]}?security={"tls" if p.get("tls") else "none"}#{p["name"]}'
+            link = f"vless://{p['uuid']}@{p['server']}:{p['port']}?security={'tls' if p.get('tls') else 'none'}#{p['name']}"
             lines.append(link)
 
         elif p["type"] == "vmess":
@@ -206,12 +220,10 @@ def build_v2rayng(cache):
                 "net": "tcp",
                 "tls": "tls" if p.get("tls") else ""
             }
-
             encoded = base64.b64encode(json.dumps(vm).encode()).decode()
             lines.append("vmess://" + encoded)
 
-    raw = "\n".join(lines)
-    return base64.b64encode(raw.encode()).decode()
+    return base64.b64encode("\n".join(lines).encode()).decode()
 
 
 # -------------------------
@@ -224,11 +236,6 @@ def main():
         "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no3.txt",
         "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no4.txt",
         "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no5.txt",
-        "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no6.txt",
-        "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no7.txt",
-        "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no8.txt",
-        "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no9.txt",
-        "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no10.txt",
     ]
 
     cache = load_cache()
@@ -265,7 +272,7 @@ def main():
             f.write(v2rayng)
 
     print("DONE")
-    print("proxies:", len(cache))
+    print("TOTAL:", len(cache))
 
 
 if __name__ == "__main__":
