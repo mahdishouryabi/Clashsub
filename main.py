@@ -4,7 +4,7 @@ import json
 import base64
 from urllib.parse import urlparse, parse_qs
 
-# -------------------------
+# ------------------------
 # FETCH SUB
 # -------------------------
 def fetch_sub(url):
