@@ -12,7 +12,7 @@ CACHE_FILE = "cache.json"
 # -------------------------
 # CONFIG
 # -------------------------
-TEST_URL = "http://www.gstatic.com/generate_204"
+TEST_URL = "https://cp.cloudflare.com/generate_204"
 FAIL_THRESHOLD = 3
 TIMEOUT = 3
 
