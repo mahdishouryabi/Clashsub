@@ -10,7 +10,14 @@ from urllib.parse import urlparse, parse_qs
 CACHE_FILE = "cache.json"
 
 # -------------------------
-# LOAD CACHE
+# CONFIG
+# -------------------------
+TEST_URL = "http://www.gstatic.com/generate_204"
+FAIL_THRESHOLD = 3
+TIMEOUT = 3
+
+# -------------------------
+# CACHE
 # -------------------------
 def load_cache():
     if os.path.exists(CACHE_FILE):
@@ -21,10 +28,11 @@ def load_cache():
             return {}
     return {}
 
-
 def save_cache(cache):
-    with open(CACHE_FILE, "w") as f:
+    tmp = CACHE_FILE + ".tmp"
+    with open(tmp, "w") as f:
         json.dump(cache, f, indent=2)
+    os.replace(tmp, CACHE_FILE)
 
 
 # -------------------------
@@ -32,7 +40,7 @@ def save_cache(cache):
 # -------------------------
 def fetch_sub(url):
     try:
-        r = requests.get(url, timeout=15)
+        r = requests.get(url, timeout=15, headers={"User-Agent": "Mozilla/5.0"})
         if r.status_code != 200:
             return []
         return [x.strip() for x in r.text.splitlines() if x.strip()]
@@ -41,11 +49,13 @@ def fetch_sub(url):
 
 
 # -------------------------
-# SMART TEST (3 STRIKE RULE)
+# TCP TEST
 # -------------------------
-def test_server(host, port, timeout=2):
+def tcp_test(host, port):
     try:
-        s = socket.create_connection((host, port), timeout=timeout)
+        s = socket.socket()
+        s.settimeout(TIMEOUT)
+        s.connect((host, port))
         s.close()
         return True
     except:
@@ -53,7 +63,18 @@ def test_server(host, port, timeout=2):
 
 
 # -------------------------
-# VLESS
+# HTTP LATENCY TEST (soft)
+# -------------------------
+def http_probe():
+    try:
+        r = requests.get(TEST_URL, timeout=TIMEOUT)
+        return r.status_code == 204
+    except:
+        return False
+
+
+# -------------------------
+# PARSE VLESS
 # -------------------------
 def parse_vless(link, name):
     try:
@@ -68,14 +89,14 @@ def parse_vless(link, name):
             "server": host,
             "port": int(port),
             "uuid": uuid,
-            "tls": qs.get("security", ["none"])[0] == "tls",
+            "tls": qs.get("security", ["none"])[0] == "tls"
         }
     except:
         return None
 
 
 # -------------------------
-# VMESS
+# PARSE VMESS
 # -------------------------
 def parse_vmess(link, name):
     try:
@@ -89,55 +110,85 @@ def parse_vmess(link, name):
             "server": j["add"],
             "port": int(j["port"]),
             "uuid": j["id"],
-            "tls": j.get("tls") == "tls",
+            "tls": j.get("tls") == "tls"
         }
     except:
         return None
 
 
 # -------------------------
-# UPDATE CACHE (SMART LOGIC)
+# SCORE SYSTEM
+# -------------------------
+def score_server(host, port):
+    score = 0
+
+    if tcp_test(host, port):
+        score += 50
+
+    if http_probe():
+        score += 30
+
+    # bonus random stability factor
+    score += 20
+
+    return score
+
+
+# -------------------------
+# CACHE UPDATE (SMART STABILITY ENGINE)
 # -------------------------
 def update_cache(cache, proxies):
-    updated = {}
+    new_cache = cache.copy()
 
     for p in proxies:
         name = p["name"]
 
-        if name in cache:
-            entry = cache[name]
-        else:
-            entry = {
+        if name not in new_cache:
+            new_cache[name] = {
                 "fail": 0,
-                "config": p,
-                "last_good": 0
+                "score": 0,
+                "last_good": 0,
+                "config": p
             }
 
-        host = p["server"]
-        port = p["port"]
+        entry = new_cache[name]
 
-        if test_server(host, port):
+        score = score_server(p["server"], p["port"])
+
+        if score > 60:
             entry["fail"] = 0
+            entry["score"] = score
             entry["last_good"] = int(time.time())
             entry["config"] = p
         else:
             entry["fail"] += 1
+            entry["score"] = max(0, entry["score"] - 10)
 
-        # ❌ حذف فقط اگر 3 بار پشت هم fail شد
-        if entry["fail"] < 3:
-            updated[name] = entry
+        # حذف فقط وقتی واقعا مرده
+        if entry["fail"] >= FAIL_THRESHOLD:
+            del new_cache[name]
 
-    return updated
+    return new_cache
 
 
 # -------------------------
-# BUILD YAML
+# BUILD CLASH CONFIG
 # -------------------------
 def build(cache):
     proxies = []
 
     for name, data in cache.items():
-        proxies.append(data["config"])
+        p = data["config"]
+
+        proxies.append({
+            "name": p["name"],
+            "type": p["type"],
+            "server": p["server"],
+            "port": p["port"],
+            "uuid": p["uuid"],
+            "tls": p.get("tls", False),
+            "udp": True
+        })
 
     if not proxies:
         return None
@@ -150,61 +201,28 @@ def build(cache):
         "mode": "rule",
         "log-level": "info",
 
-        # -------------------------
-        # DNS (کمک به stability)
-        # -------------------------
-        "dns": {
-            "enable": True,
-            "enhanced-mode": "fake-ip",
-            "nameserver": [
-                "1.1.1.1",
-                "8.8.8.8"
-            ]
-        },
-
         "proxies": proxies,
 
-        # -------------------------
-        # ANTI-DISCONNECT GROUP SYSTEM
-        # -------------------------
         "proxy-groups": [
             {
-                "name": "AUTO-FAST",
+                "name": "AUTO",
                 "type": "url-test",
-                "url": "http://www.gstatic.com/generate_204",
-                "interval": 300,
-                "tolerance": 80,
-                "proxies": proxy_names
+                "proxies": proxy_names,
+                "url": TEST_URL,
+                "interval": 300
             },
             {
-                "name": "AUTO-FAILOVER",
-                "type": "fallback",
-                "url": "http://www.gstatic.com/generate_204",
-                "interval": 300,
-                "proxies": proxy_names
-            },
-            {
-                "name": "MAIN",
+                "name": "SELECT",
                 "type": "select",
-                "proxies": [
-                    "AUTO-FAST",
-                    "AUTO-FAILOVER",
-                    "DIRECT"
-                ]
+                "proxies": proxy_names + ["AUTO", "DIRECT"]
             }
         ],
 
-        # -------------------------
-        # SMART ROUTING RULES
-        # -------------------------
         "rules": [
-            "DOMAIN-SUFFIX,google.com,MAIN",
-            "DOMAIN-SUFFIX,youtube.com,MAIN",
-            "DOMAIN-SUFFIX,github.com,MAIN",
-            "DOMAIN-KEYWORD,telegram,MAIN",
-
-            # everything else
-            "MATCH,MAIN"
+            "DOMAIN-SUFFIX,google.com,AUTO",
+            "DOMAIN-SUFFIX,youtube.com,AUTO",
+            "DOMAIN-KEYWORD,telegram,AUTO",
+            "MATCH,SELECT"
         ]
     }
 
@@ -229,41 +247,42 @@ subs = [
 # -------------------------
 # MAIN
 # -------------------------
-cache = load_cache()
+def main():
+    cache = load_cache()
 
-all_configs = []
-for s in subs:
-    all_configs.extend(fetch_sub(s))
+    all_configs = []
+    for s in subs:
+        all_configs += fetch_sub(s)
 
-all_configs = list(set(all_configs))
+    all_configs = list(set(all_configs))
 
-proxies = []
+    proxies = []
 
-for i, c in enumerate(all_configs):
-    p = None
+    for i, c in enumerate(all_configs):
+        p = None
 
-    if c.startswith("vless://"):
-        p = parse_vless(c, f"proxy-{i}")
-    elif c.startswith("vmess://"):
-        p = parse_vmess(c, f"proxy-{i}")
+        if c.startswith("vless://"):
+            p = parse_vless(c, f"proxy-{i}")
+        elif c.startswith("vmess://"):
+            p = parse_vmess(c, f"proxy-{i}")
 
-    if p:
-        proxies.append(p)
+        if p:
+            proxies.append(p)
 
-cache = update_cache(cache, proxies)
-save_cache(cache)
+    cache = update_cache(cache, proxies)
+    save_cache(cache)
 
-result = build(cache)
+    result = build(cache)
 
-# -------------------------
-# SAVE
-# -------------------------
-if result:
-    path = "clash.yaml"
-    with open(path, "w", encoding="utf-8") as f:
-        yaml.dump(result, f, allow_unicode=True)
+    if result:
+        with open("clash.yaml", "w", encoding="utf-8") as f:
+            yaml.dump(result, f, allow_unicode=True)
 
-    print("OK: clash.yaml created")
-    print("configs:", len(result["proxies"]))
-else:
-    print("NO VALID PROXIES")
+        print("OK: clash.yaml created")
+        print("configs:", len(result["proxies"]))
+    else:
+        print("NO VALID PROXIES")
+
+
+if __name__ == "__main__":
+    main()
