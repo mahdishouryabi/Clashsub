@@ -3,7 +3,7 @@ name: update-clash
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/2 * * * *"
 
 permissions:
   contents: write   # 👈 خیلی مهم برای اجازه push
