@@ -1,10 +1,33 @@
 import requests
 import yaml
-import json
 import base64
+import json
+import time
+import os
+import socket
 from urllib.parse import urlparse, parse_qs
 
-# ------------------------
+CACHE_FILE = "cache.json"
+
+# -------------------------
+# LOAD CACHE
+# -------------------------
+def load_cache():
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE, "r") as f:
+                return json.load(f)
+        except:
+            return {}
+    return {}
+
+
+def save_cache(cache):
+    with open(CACHE_FILE, "w") as f:
+        json.dump(cache, f, indent=2)
+
+
+# -------------------------
 # FETCH SUB
 # -------------------------
 def fetch_sub(url):
@@ -16,8 +39,21 @@ def fetch_sub(url):
     except:
         return []
 
+
 # -------------------------
-# VLESS PARSER
+# SMART TEST (3 STRIKE RULE)
+# -------------------------
+def test_server(host, port, timeout=2):
+    try:
+        s = socket.create_connection((host, port), timeout=timeout)
+        s.close()
+        return True
+    except:
+        return False
+
+
+# -------------------------
+# VLESS
 # -------------------------
 def parse_vless(link, name):
     try:
@@ -26,34 +62,20 @@ def parse_vless(link, name):
         host, port = hp.split(":")
         qs = parse_qs(p.query)
 
-        proxy = {
+        return {
             "name": name,
             "type": "vless",
             "server": host,
             "port": int(port),
             "uuid": uuid,
-            "udp": True
+            "tls": qs.get("security", ["none"])[0] == "tls",
         }
-
-        if qs.get("security", ["none"])[0] == "tls":
-            proxy["tls"] = True
-            proxy["servername"] = qs.get("sni", [host])[0]
-
-        if qs.get("type", ["tcp"])[0] == "ws":
-            proxy["network"] = "ws"
-            proxy["ws-opts"] = {
-                "path": qs.get("path", ["/"])[0],
-                "headers": {
-                    "Host": qs.get("host", [host])[0]
-                }
-            }
-
-        return proxy
     except:
         return None
 
+
 # -------------------------
-# VMESS PARSER
+# VMESS
 # -------------------------
 def parse_vmess(link, name):
     try:
@@ -61,53 +83,68 @@ def parse_vmess(link, name):
         decoded = base64.b64decode(data + "==").decode()
         j = json.loads(decoded)
 
-        proxy = {
+        return {
             "name": name,
             "type": "vmess",
             "server": j["add"],
             "port": int(j["port"]),
             "uuid": j["id"],
-            "udp": True
+            "tls": j.get("tls") == "tls",
         }
-
-        if j.get("tls") == "tls":
-            proxy["tls"] = True
-            proxy["servername"] = j.get("host", j["add"])
-
-        if j.get("net") == "ws":
-            proxy["network"] = "ws"
-            proxy["ws-opts"] = {
-                "path": j.get("path", "/"),
-                "headers": {"Host": j.get("host", j["add"])}
-            }
-
-        return proxy
     except:
         return None
 
+
 # -------------------------
-# BUILD
+# UPDATE CACHE (SMART LOGIC)
 # -------------------------
-def build(configs):
+def update_cache(cache, proxies):
+    updated = {}
+
+    for p in proxies:
+        name = p["name"]
+
+        if name in cache:
+            entry = cache[name]
+        else:
+            entry = {
+                "fail": 0,
+                "config": p,
+                "last_good": 0
+            }
+
+        host = p["server"]
+        port = p["port"]
+
+        if test_server(host, port):
+            entry["fail"] = 0
+            entry["last_good"] = int(time.time())
+            entry["config"] = p
+        else:
+            entry["fail"] += 1
+
+        # ❌ حذف فقط اگر 3 بار پشت هم fail شد
+        if entry["fail"] < 3:
+            updated[name] = entry
+
+    return updated
+
+
+# -------------------------
+# BUILD YAML
+# -------------------------
+def build(cache):
     proxies = []
 
-    for i, c in enumerate(configs):
-        if c.startswith("vless://"):
-            p = parse_vless(c, f"proxy-{i}")
-        elif c.startswith("vmess://"):
-            p = parse_vmess(c, f"proxy-{i}")
-        else:
-            continue
-
-        if p:
-            proxies.append(p)
+    for name, data in cache.items():
+        proxies.append(data["config"])
 
     if not proxies:
         return None
 
     return {
         "mixed-port": 7890,
-        "allow-lan": False,
+        "allow-lan": True,
         "mode": "rule",
         "log-level": "info",
 
@@ -116,33 +153,33 @@ def build(configs):
         "proxy-groups": [
             {
                 "name": "auto",
-                "type": "url-test",
-                "url": "http://www.gstatic.com/generate_204",
-                "interval": 300,
-                "proxies": [p["name"] for p in proxies]
+                "type": "select",
+                "proxies": [p["name"] for p in proxies] + ["DIRECT"]
             }
         ],
 
         "rules": [
+            "DOMAIN-SUFFIX,google.com,auto",
+            "DOMAIN-SUFFIX,youtube.com,auto",
+            "DOMAIN-KEYWORD,telegram,auto",
             "MATCH,auto"
         ]
     }
 
+
 # -------------------------
-# SUBS
+# SUB LIST
 # -------------------------
 subs = [
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no1.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no2.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no3.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no4.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no5.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no6.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no7.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no8.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no9.txt",
-    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no10.txt",
 ]
+
+
+# -------------------------
+# MAIN
+# -------------------------
+cache = load_cache()
 
 all_configs = []
 for s in subs:
@@ -150,15 +187,33 @@ for s in subs:
 
 all_configs = list(set(all_configs))
 
-result = build(all_configs)
+proxies = []
+
+for i, c in enumerate(all_configs):
+    p = None
+
+    if c.startswith("vless://"):
+        p = parse_vless(c, f"proxy-{i}")
+    elif c.startswith("vmess://"):
+        p = parse_vmess(c, f"proxy-{i}")
+
+    if p:
+        proxies.append(p)
+
+cache = update_cache(cache, proxies)
+save_cache(cache)
+
+result = build(cache)
 
 # -------------------------
 # SAVE
 # -------------------------
 if result:
-    with open("clash.yaml", "w", encoding="utf-8") as f:
+    path = "clash.yaml"
+    with open(path, "w", encoding="utf-8") as f:
         yaml.dump(result, f, allow_unicode=True)
 
     print("OK: clash.yaml created")
-
-print("configs:", len(all_configs))
+    print("configs:", len(result["proxies"]))
+else:
+    print("NO VALID PROXIES")
