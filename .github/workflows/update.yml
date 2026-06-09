@@ -1,9 +1,9 @@
-name: update configs
+name: update-clash
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 * * * *"   # هر ساعت
+    - cron: "0 * * * *"
 
 jobs:
   build:
@@ -12,21 +12,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: setup python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
 
-      - name: install deps
-        run: pip install requests pyyaml
+      - run: pip install requests pyyaml
 
-      - name: run script
-        run: python main.py
+      - run: python main.py
 
-      - name: commit result
+      - name: commit
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git add .
-          git commit -m "auto update" || exit 0
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add clash.yaml
+          git commit -m "update" || echo "no changes"
           git push
