@@ -142,27 +142,69 @@ def build(cache):
     if not proxies:
         return None
 
+    proxy_names = [p["name"] for p in proxies]
+
     return {
         "mixed-port": 7890,
         "allow-lan": True,
         "mode": "rule",
         "log-level": "info",
 
+        # -------------------------
+        # DNS (کمک به stability)
+        # -------------------------
+        "dns": {
+            "enable": True,
+            "enhanced-mode": "fake-ip",
+            "nameserver": [
+                "1.1.1.1",
+                "8.8.8.8"
+            ]
+        },
+
         "proxies": proxies,
 
+        # -------------------------
+        # ANTI-DISCONNECT GROUP SYSTEM
+        # -------------------------
         "proxy-groups": [
             {
-                "name": "auto",
+                "name": "AUTO-FAST",
+                "type": "url-test",
+                "url": "http://www.gstatic.com/generate_204",
+                "interval": 300,
+                "tolerance": 80,
+                "proxies": proxy_names
+            },
+            {
+                "name": "AUTO-FAILOVER",
+                "type": "fallback",
+                "url": "http://www.gstatic.com/generate_204",
+                "interval": 300,
+                "proxies": proxy_names
+            },
+            {
+                "name": "MAIN",
                 "type": "select",
-                "proxies": [p["name"] for p in proxies] + ["DIRECT"]
+                "proxies": [
+                    "AUTO-FAST",
+                    "AUTO-FAILOVER",
+                    "DIRECT"
+                ]
             }
         ],
 
+        # -------------------------
+        # SMART ROUTING RULES
+        # -------------------------
         "rules": [
-            "DOMAIN-SUFFIX,google.com,auto",
-            "DOMAIN-SUFFIX,youtube.com,auto",
-            "DOMAIN-KEYWORD,telegram,auto",
-            "MATCH,auto"
+            "DOMAIN-SUFFIX,google.com,MAIN",
+            "DOMAIN-SUFFIX,youtube.com,MAIN",
+            "DOMAIN-SUFFIX,github.com,MAIN",
+            "DOMAIN-KEYWORD,telegram,MAIN",
+
+            # everything else
+            "MATCH,MAIN"
         ]
     }
 
@@ -173,6 +215,14 @@ def build(cache):
 subs = [
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no1.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no2.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no3.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no4.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no5.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no6.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no7.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no8.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no9.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/V2RAY_SUB/refs/heads/main/v2ray_configs_no10.txt",
 ]
 
 
