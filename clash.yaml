@@ -3,185 +3,86 @@ log-level: info
 mixed-port: 7890
 mode: rule
 proxies:
-- name: proxy-0
-  port: 443
-  server: 212.118.40.187
-  tls: false
-  type: vless
-  udp: true
-  uuid: ee71862e-816b-4d26-97d2-f200898e385d
 - name: proxy-1
-  port: 2053
-  server: one-for-all.levikogjgfdd.ir
-  tls: true
+  port: 443
+  server: 152.53.114.186
+  tls: false
   type: vless
   udp: true
-  uuid: e7961655-9674-4cbd-a36f-ec0d5d7d660c
+  uuid: ab7d5ea9-6eca-47c3-b14b-67378fc2d7c2
 - name: proxy-2
-  port: 443
-  server: x4g-production-d38d.up.railway.app
-  tls: true
-  type: vless
-  udp: true
-  uuid: df3157c6-223f-a1b6-aff4-9466e647f660
-- name: proxy-3
-  port: 443
-  server: 199.232.78.159
-  tls: true
-  type: vless
-  udp: true
-  uuid: e0454af2-6fe9-4983-a55d-05e1da202602
-- name: proxy-4
-  port: 80
-  server: 65.109.181.6
-  tls: false
-  type: vless
-  udp: true
-  uuid: 7f3c6d59-e19f-47e4-8004-5facb77b1211
-- name: proxy-5
-  port: 443
-  server: 206.71.158.124
-  tls: false
-  type: vless
-  udp: true
-  uuid: 3536e1fa-0850-44d1-b123-925ce12476cf
-- name: proxy-6
-  port: 80
-  server: 65.109.181.6
-  tls: false
-  type: vless
-  udp: true
-  uuid: 7f3c6d59-e19f-47e4-8004-5facb77b1211
-- name: proxy-7
-  port: 443
-  server: 144.124.246.55
-  tls: false
-  type: vless
-  udp: true
-  uuid: 40de6299-d792-4868-8a82-411ead0aa943
-- name: proxy-11
-  port: 8443
-  server: 188.114.99.160
-  tls: true
-  type: vless
-  udp: true
-  uuid: db3f09ae-23f2-42b8-abee-7b89fb392c5e
-- name: proxy-13
-  port: 443
-  server: 69.46.46.10
-  tls: true
-  type: vless
-  udp: true
-  uuid: 67f6c482-4169-f526-8bc1-5a7a991b7e81
-- name: proxy-15
-  port: 443
-  server: 69.46.46.10
-  tls: true
-  type: vless
-  udp: true
-  uuid: 67f6c482-4169-f526-8bc1-5a7a991b7e81
-- name: proxy-16
-  port: 8443
-  server: ipc6.l1i.xyz
-  tls: true
-  type: vless
-  udp: true
-  uuid: 4c0f0f2d-1d59-4d10-b8bf-87b5ba6b2bcf
-- name: proxy-19
-  port: 80
-  server: 151.101.1.57
-  tls: false
-  type: vless
-  udp: true
-  uuid: f31fb479-d2d3-4271-aefe-cb32a38811d0
-- name: proxy-21
-  port: 443
-  server: 69.46.46.10
-  tls: true
-  type: vless
-  udp: true
-  uuid: 67f6c482-4169-f526-8bc1-5a7a991b7e81
-- name: proxy-22
-  port: 80
-  server: tr.koomeh.net
-  tls: false
-  type: vless
-  udp: true
-  uuid: 386d4833-8990-4c6e-b112-3ea9c7cafb9e
-- name: proxy-23
   port: 8443
   server: 78.135.77.164
   tls: false
   type: vless
   udp: true
   uuid: f0b1b21b-b047-47d6-917a-06ac48b56dec
-- name: proxy-26
+- name: proxy-4
   port: 443
-  server: 95.85.247.155
+  server: 45.131.212.52
   tls: false
   type: vless
   udp: true
-  uuid: 423b1d79-08c4-403f-9d5e-c541f791b55f
-- name: proxy-27
+  uuid: 5c22dd50-f75d-4cf5-ba53-721f91d8bfe1
+- name: proxy-6
   port: 443
-  server: 172.64.40.84
+  server: 87.58.205.88
+  tls: false
+  type: vless
+  udp: true
+  uuid: d49e6f64-2a62-4fc6-8dde-9ab1bdf12c02
+- name: proxy-7
+  port: 8443
+  server: 185.39.204.155
+  tls: false
+  type: vless
+  udp: true
+  uuid: 1f29762d-3f23-4207-9e39-f774de5d49ba
+- name: proxy-8
+  port: 443
+  server: 222.167.211.96
+  tls: false
+  type: vless
+  udp: true
+  uuid: e15b0798-45e6-4a02-8385-80dc4b0faa70
+- name: proxy-13
+  port: 443
+  server: x4g-production-d38d.up.railway.app
   tls: true
   type: vless
   udp: true
-  uuid: eeb6823c-b926-4ea2-866a-5542edd26e59
-- name: proxy-29
-  port: 443
-  server: 212.104.128.85
+  uuid: df3157c6-223f-a1b6-aff4-9466e647f660
+- name: proxy-14
+  port: 8443
+  server: 188.114.99.160
   tls: true
   type: vless
   udp: true
-  uuid: a4ab7d6a-653d-4439-b5fa-34280deba17d
+  uuid: db3f09ae-23f2-42b8-abee-7b89fb392c5e
 proxy-groups:
 - interval: 120
   name: AUTO
   proxies:
-  - proxy-0
   - proxy-1
   - proxy-2
-  - proxy-3
   - proxy-4
-  - proxy-5
   - proxy-6
   - proxy-7
-  - proxy-11
+  - proxy-8
   - proxy-13
-  - proxy-15
-  - proxy-16
-  - proxy-19
-  - proxy-21
-  - proxy-22
-  - proxy-23
-  - proxy-26
-  - proxy-27
-  - proxy-29
+  - proxy-14
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: SELECT
   proxies:
-  - proxy-0
   - proxy-1
   - proxy-2
-  - proxy-3
   - proxy-4
-  - proxy-5
   - proxy-6
   - proxy-7
-  - proxy-11
+  - proxy-8
   - proxy-13
-  - proxy-15
-  - proxy-16
-  - proxy-19
-  - proxy-21
-  - proxy-22
-  - proxy-23
-  - proxy-26
-  - proxy-27
-  - proxy-29
+  - proxy-14
   - AUTO
   - DIRECT
   type: select
