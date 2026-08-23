@@ -3,284 +3,284 @@ log-level: info
 mixed-port: 7890
 mode: rule
 proxies:
-- name: proxy-0
-  port: 8880
-  server: www.gov.ua
-  tls: false
-  type: vless
-  udp: true
-  uuid: 942bdcfc-e522-44f1-b899-3bd8db7c5ae2
-- name: proxy-2
-  port: 23576
-  server: 51.158.206.96
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-3
-  port: 8880
-  server: 104.16.107.139
-  tls: false
-  type: vless
-  udp: true
-  uuid: bf380279-cbd5-4e55-96d1-f5a652aaf6b3
-- name: proxy-6
-  port: 2087
-  server: www.shopify.com
-  tls: true
-  type: vless
-  udp: true
-  uuid: 77777777-8a3e-6666-b6d1-a9c5f0e8b3a2
-- name: proxy-9
-  port: 8880
-  server: skk.moe
-  tls: false
-  type: vless
-  udp: true
-  uuid: 4a40e7a6-9179-42c1-9bd7-eefec23a62f8
-- name: proxy-11
-  port: 8443
-  server: 80.66.72.179
-  tls: false
-  type: vless
-  udp: true
-  uuid: 7b1727dc-f481-440b-b7f5-a515dcf34306
-- name: proxy-12
-  port: 443
-  server: cdn.pinecloud.net
-  tls: false
-  type: vless
-  udp: true
-  uuid: b052df40-d51c-456c-9bd6-57af01a87e4e
-- name: proxy-13
-  port: 8880
-  server: 172.64.94.251
-  tls: false
-  type: vless
-  udp: true
-  uuid: 9f4b666c-ecf1-49e9-8ab8-9ae2c4f4c613
-- name: proxy-16
-  port: 8880
-  server: 104.24.152.211
-  tls: false
-  type: vless
-  udp: true
-  uuid: a7b8b48e-1000-46f5-a974-f6606d94f3b4
-- name: proxy-20
-  port: 8880
-  server: 172.64.88.251
-  tls: false
-  type: vless
-  udp: true
-  uuid: 87a5d3eb-afd4-4193-9787-c54ef7c26c8c
-- name: proxy-21
-  port: 18000
-  server: 38.91.107.49
-  tls: false
-  type: vmess
-  udp: true
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-- name: proxy-23
-  port: 23576
-  server: 51.158.206.26
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-24
-  port: 443
-  server: 91.84.117.29
-  tls: false
-  type: vless
-  udp: true
-  uuid: vl_test1
-- name: proxy-25
-  port: 2095
-  server: 104.18.42.163
-  tls: false
-  type: vless
-  udp: true
-  uuid: 86c50e3a-5b87-49dd-bd20-03c7f2735e40
-- name: proxy-33
-  port: 443
-  server: 144.31.87.16
-  tls: false
-  type: vless
-  udp: true
-  uuid: c40f773e-3b96-417e-b22c-e48cb63ca7d9
-- name: proxy-36
-  port: 8880
-  server: 104.16.106.213
-  tls: false
-  type: vless
-  udp: true
-  uuid: 7121d0be-40f5-4eda-b3d1-1556e71ea4fa
-- name: proxy-40
-  port: 8880
-  server: www.visa.com.sg
-  tls: false
-  type: vless
-  udp: true
-  uuid: 4af06e6a-63ae-43c1-83c0-f8f613aef263
-- name: proxy-41
-  port: 443
-  server: 188.114.97.6
-  tls: true
-  type: vless
-  udp: true
-  uuid: 1c94a079-e41d-48d3-b5b6-d8f7f761a00d
-- name: proxy-42
-  port: 23576
-  server: 15.204.97.198
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-55
-  port: 10583
-  server: 3.114.220.22
-  tls: false
-  type: vless
-  udp: true
-  uuid: 814bd064-544d-4255-a070-5705c03f6da9
-- name: proxy-57
-  port: 23576
-  server: 15.204.97.214
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-58
-  port: 23576
-  server: 51.158.206.12
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-61
-  port: 23576
-  server: 51.158.206.96
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-64
-  port: 443
-  server: 165.140.216.141
-  tls: false
-  type: vmess
-  udp: true
-  uuid: e7d72a8d-26f2-4b54-b366-0c43e0bcba7d
-- name: proxy-66
-  port: 23576
-  server: 51.158.206.87
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-68
+- name: proxy-1
   port: 8880
   server: 104.17.26.45
   tls: false
   type: vless
   udp: true
   uuid: 2e9012a2-7f8c-4233-b78b-5228a9a4951b
-- name: proxy-70
+- name: proxy-5
+  port: 23576
+  server: 51.158.206.96
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-6
+  port: 23576
+  server: 15.204.97.214
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-9
+  port: 443
+  server: 91.84.117.29
+  tls: false
+  type: vless
+  udp: true
+  uuid: vl_test1
+- name: proxy-10
+  port: 23576
+  server: 51.158.206.26
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-15
+  port: 8880
+  server: 104.16.106.213
+  tls: false
+  type: vless
+  udp: true
+  uuid: 7121d0be-40f5-4eda-b3d1-1556e71ea4fa
+- name: proxy-16
+  port: 8880
+  server: 104.16.107.139
+  tls: false
+  type: vless
+  udp: true
+  uuid: bf380279-cbd5-4e55-96d1-f5a652aaf6b3
+- name: proxy-20
+  port: 8880
+  server: 104.24.152.211
+  tls: false
+  type: vless
+  udp: true
+  uuid: a7b8b48e-1000-46f5-a974-f6606d94f3b4
+- name: proxy-21
+  port: 443
+  server: 188.114.97.6
+  tls: true
+  type: vless
+  udp: true
+  uuid: 1c94a079-e41d-48d3-b5b6-d8f7f761a00d
+- name: proxy-25
+  port: 18000
+  server: 38.91.107.49
+  tls: false
+  type: vmess
+  udp: true
+  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
+- name: proxy-26
+  port: 443
+  server: 165.140.216.141
+  tls: false
+  type: vmess
+  udp: true
+  uuid: e7d72a8d-26f2-4b54-b366-0c43e0bcba7d
+- name: proxy-28
+  port: 23576
+  server: 51.158.206.12
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-31
+  port: 8443
+  server: 80.66.72.179
+  tls: false
+  type: vless
+  udp: true
+  uuid: 7b1727dc-f481-440b-b7f5-a515dcf34306
+- name: proxy-33
+  port: 8880
+  server: 172.64.94.251
+  tls: false
+  type: vless
+  udp: true
+  uuid: 9f4b666c-ecf1-49e9-8ab8-9ae2c4f4c613
+- name: proxy-44
+  port: 2095
+  server: 104.18.42.163
+  tls: false
+  type: vless
+  udp: true
+  uuid: 86c50e3a-5b87-49dd-bd20-03c7f2735e40
+- name: proxy-45
+  port: 8880
+  server: 172.64.88.251
+  tls: false
+  type: vless
+  udp: true
+  uuid: 87a5d3eb-afd4-4193-9787-c54ef7c26c8c
+- name: proxy-46
+  port: 8880
+  server: www.visa.com.sg
+  tls: false
+  type: vless
+  udp: true
+  uuid: 4af06e6a-63ae-43c1-83c0-f8f613aef263
+- name: proxy-48
+  port: 23576
+  server: 51.158.206.87
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-49
   port: 8880
   server: skk.moe
   tls: false
   type: vless
   udp: true
-  uuid: fe467f51-b2cc-4b16-b50b-a78865ed3dd9
-- name: proxy-76
-  port: 23576
-  server: 51.158.206.97
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-77
+  uuid: 4a40e7a6-9179-42c1-9bd7-eefec23a62f8
+- name: proxy-50
   port: 23576
   server: 51.158.206.103
   tls: false
   type: vless
   udp: true
   uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-79
+- name: proxy-51
+  port: 23576
+  server: 15.204.97.198
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-54
+  port: 8880
+  server: www.gov.ua
+  tls: false
+  type: vless
+  udp: true
+  uuid: 942bdcfc-e522-44f1-b899-3bd8db7c5ae2
+- name: proxy-57
+  port: 23576
+  server: 51.158.206.97
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+- name: proxy-58
+  port: 8880
+  server: skk.moe
+  tls: false
+  type: vless
+  udp: true
+  uuid: fe467f51-b2cc-4b16-b50b-a78865ed3dd9
+- name: proxy-68
   port: 2096
   server: 188.114.96.2
   tls: true
   type: vless
   udp: true
   uuid: 8d82944e-17b9-473f-a456-dec9a6e21471
+- name: proxy-69
+  port: 2087
+  server: www.shopify.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 77777777-8a3e-6666-b6d1-a9c5f0e8b3a2
+- name: proxy-70
+  port: 443
+  server: cdn.pinecloud.net
+  tls: false
+  type: vless
+  udp: true
+  uuid: b052df40-d51c-456c-9bd6-57af01a87e4e
+- name: proxy-73
+  port: 10583
+  server: 3.114.220.22
+  tls: false
+  type: vless
+  udp: true
+  uuid: 814bd064-544d-4255-a070-5705c03f6da9
+- name: proxy-76
+  port: 443
+  server: 144.31.87.16
+  tls: false
+  type: vless
+  udp: true
+  uuid: c40f773e-3b96-417e-b22c-e48cb63ca7d9
+- name: proxy-78
+  port: 23576
+  server: 51.158.206.96
+  tls: false
+  type: vless
+  udp: true
+  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
 proxy-groups:
 - interval: 120
   name: AUTO
   proxies:
-  - proxy-0
-  - proxy-2
-  - proxy-3
+  - proxy-1
+  - proxy-5
   - proxy-6
   - proxy-9
-  - proxy-11
-  - proxy-12
-  - proxy-13
+  - proxy-10
+  - proxy-15
   - proxy-16
   - proxy-20
   - proxy-21
-  - proxy-23
-  - proxy-24
   - proxy-25
+  - proxy-26
+  - proxy-28
+  - proxy-31
   - proxy-33
-  - proxy-36
-  - proxy-40
-  - proxy-41
-  - proxy-42
-  - proxy-55
+  - proxy-44
+  - proxy-45
+  - proxy-46
+  - proxy-48
+  - proxy-49
+  - proxy-50
+  - proxy-51
+  - proxy-54
   - proxy-57
   - proxy-58
-  - proxy-61
-  - proxy-64
-  - proxy-66
   - proxy-68
+  - proxy-69
   - proxy-70
+  - proxy-73
   - proxy-76
-  - proxy-77
-  - proxy-79
+  - proxy-78
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: SELECT
   proxies:
-  - proxy-0
-  - proxy-2
-  - proxy-3
+  - proxy-1
+  - proxy-5
   - proxy-6
   - proxy-9
-  - proxy-11
-  - proxy-12
-  - proxy-13
+  - proxy-10
+  - proxy-15
   - proxy-16
   - proxy-20
   - proxy-21
-  - proxy-23
-  - proxy-24
   - proxy-25
+  - proxy-26
+  - proxy-28
+  - proxy-31
   - proxy-33
-  - proxy-36
-  - proxy-40
-  - proxy-41
-  - proxy-42
-  - proxy-55
+  - proxy-44
+  - proxy-45
+  - proxy-46
+  - proxy-48
+  - proxy-49
+  - proxy-50
+  - proxy-51
+  - proxy-54
   - proxy-57
   - proxy-58
-  - proxy-61
-  - proxy-64
-  - proxy-66
   - proxy-68
+  - proxy-69
   - proxy-70
+  - proxy-73
   - proxy-76
-  - proxy-77
-  - proxy-79
+  - proxy-78
   - AUTO
   - DIRECT
   type: select
