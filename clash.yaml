@@ -3,296 +3,325 @@ log-level: info
 mixed-port: 7890
 mode: rule
 proxies:
-- name: proxy-0
-  port: 23576
-  server: 62.210.91.10
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-1
-  port: 9443
-  server: 51.250.35.229
-  tls: false
-  type: vless
-  udp: true
-  uuid: a704443d-655e-4d9f-8ce6-12eeb17a9a08
-- name: proxy-3
-  port: 1819
-  server: 130.185.120.62
+- name: proxy-2
+  port: 443
+  server: shima-production.up.railway.app
   tls: true
   type: vless
   udp: true
-  uuid: bc85e463-6151-484c-b6af-f96ccf96224a
+  uuid: 100f366d-c615-ba1b-2337-73c983069b1d
+- name: proxy-3
+  port: 8443
+  server: download.mehdi-cpp.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
 - name: proxy-4
   port: 443
-  server: 87.239.249.137
-  tls: false
+  server: 104.19.250.20
+  tls: true
   type: vless
   udp: true
-  uuid: 67eb6b17-7797-4ded-bf52-423c4c5f6cbd
+  uuid: 24d49ddd-67c1-4821-b5b9-f12107366978
 - name: proxy-5
   port: 443
-  server: 172.67.165.216
-  tls: true
+  server: 162.35.231.31
+  tls: false
   type: vless
   udp: true
-  uuid: b2c43c2d-01fb-48ee-9a1c-8f1ee3227e10
+  uuid: 419f25c1-bc35-412e-93fb-258efee859b5
+- name: proxy-6
+  port: 443
+  server: 144.31.140.127
+  tls: false
+  type: vless
+  udp: true
+  uuid: d31aefb3-775b-4e87-a093-a4677addf10a
 - name: proxy-7
-  port: 22223
-  server: 18.130.61.248
-  tls: false
-  type: vless
-  udp: true
-  uuid: e4514801-0d5a-42ba-869f-39bd605aef9e
-- name: proxy-9
-  port: 4100
-  server: 83.147.246.153
-  tls: false
-  type: vless
-  udp: true
-  uuid: 85223e1a-f55d-4d0d-b27d-39e8be49d220
-- name: proxy-10
-  port: 2087
-  server: 172.64.53.240
+  port: 443
+  server: 69.46.46.20
   tls: true
   type: vless
   udp: true
-  uuid: 77777777-8a3e-6666-b6d1-a9c5f0e8b3a2
-- name: proxy-11
-  port: 2025
-  server: dda685345af09097dda685345af09097.drwrdoh.org
+  uuid: 533895c1-c9c4-a99a-51f8-68137bc8b24a
+- name: proxy-8
+  port: 2087
+  server: 172.67.74.10
   tls: false
   type: vless
   udp: true
-  uuid: 65e294c6-9733-40cd-ade4-9bcf4017a1bd
+  uuid: 97ea73b6-2043-4238-903c-a1e3d4a43c96
+- name: proxy-9
+  port: 2095
+  server: download.mehdi-cpp.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
+- name: proxy-10
+  port: 443
+  server: 91.107.241.29
+  tls: false
+  type: vless
+  udp: true
+  uuid: 5fb3ebfe-a998-4ffa-b854-3cffacbb9b67
+- name: proxy-11
+  port: 443
+  server: 129.121.95.159
+  tls: true
+  type: vless
+  udp: true
+  uuid: f6190ff2-864c-46cf-ac16-93908c069b75
 - name: proxy-12
   port: 443
-  server: 87.239.249.137
+  server: 150.40.126.21
   tls: false
   type: vless
   udp: true
-  uuid: 67eb6b17-7797-4ded-bf52-423c4c5f6cbd
+  uuid: 2f35965a-9a9b-45fd-ba32-987296dfb6be
 - name: proxy-13
+  port: 443
+  server: 185.110.189.172
+  tls: false
+  type: vless
+  udp: true
+  uuid: b39cce2f-c452-41cd-a8c6-fd4fcabebb35
+- name: proxy-14
+  port: 443
+  server: freevpn35-266.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: e0d07faf-4486-47fb-b987-1ed7abdc40bf
+- name: proxy-15
+  port: 443
+  server: freevpn35-266.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: e0d07faf-4486-47fb-b987-1ed7abdc40bf
+- name: proxy-16
+  port: 443
+  server: freevpn35-266.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: e0d07faf-4486-47fb-b987-1ed7abdc40bf
+- name: proxy-17
+  port: 46142
+  server: turj2.surup.shop
+  tls: false
+  type: vless
+  udp: true
+  uuid: 255386a8-aec5-4425-bfe7-ca49b7448deb
+- name: proxy-18
+  port: 2053
+  server: 57.131.38.163
+  tls: false
+  type: vless
+  udp: true
+  uuid: d4b08cd6-0903-411a-9dac-45dbdf5c9712
+- name: proxy-20
+  port: 443
+  server: shima-production.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: 100f366d-c615-ba1b-2337-73c983069b1d
+- name: proxy-21
+  port: 443
+  server: u.tlpyun.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 5ba437f3-f2f4-42e6-be33-5c144eb11b83
+- name: proxy-22
+  port: 443
+  server: 150.40.126.22
+  tls: false
+  type: vless
+  udp: true
+  uuid: 2f35965a-9a9b-45fd-ba32-987296dfb6be
+- name: proxy-23
+  port: 443
+  server: freevpn35-266.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: e0d07faf-4486-47fb-b987-1ed7abdc40bf
+- name: proxy-24
+  port: 2087
+  server: download.mehdi-cpp.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
+- name: proxy-25
+  port: 443
+  server: shima-production.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: 100f366d-c615-ba1b-2337-73c983069b1d
+- name: proxy-26
+  port: 443
+  server: 95.154.196.63
+  tls: false
+  type: vless
+  udp: true
+  uuid: bae47c97-9bc1-48f6-a133-a383ee71c12e
+- name: proxy-27
+  port: 2087
+  server: 172.67.74.10
+  tls: false
+  type: vless
+  udp: true
+  uuid: 97ea73b6-2043-4238-903c-a1e3d4a43c96
+- name: proxy-28
+  port: 443
+  server: 194.5.65.36
+  tls: false
+  type: vless
+  udp: true
+  uuid: d49e6f64-2a62-4fc6-8dde-9ab1bdf12c02
+- name: proxy-29
+  port: 7378
+  server: sparkconfig.parsclad.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: 661e2f9a-205a-42f2-84ad-54d05a8f2b0b
+- name: proxy-30
+  port: 443
+  server: download.mehdi-cpp.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
+- name: proxy-31
+  port: 8086
+  server: download.mehdi-cpp.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
+- name: proxy-32
+  port: 443
+  server: 151.101.1.242
+  tls: true
+  type: vless
+  udp: true
+  uuid: 57a8ea50-1a8d-4e9f-b6e8-e991a9914a8a
+- name: proxy-33
+  port: 443
+  server: 213.130.137.10
+  tls: false
+  type: vless
+  udp: true
+  uuid: b5ca5ab3-8cbc-4ac3-89da-9cd360589ecb
+- name: proxy-34
+  port: 443
+  server: 45.9.156.24
+  tls: false
+  type: vless
+  udp: true
+  uuid: 2f35965a-9a9b-45fd-ba32-987296dfb6be
+- name: proxy-35
+  port: 443
+  server: u.tlpyun.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 5ba437f3-f2f4-42e6-be33-5c144eb11b83
+- name: proxy-36
+  port: 443
+  server: 194.93.61.100
+  tls: false
+  type: vless
+  udp: true
+  uuid: 41e71ba7-d389-47aa-94f7-ed1f55fdbcdf
+- name: proxy-37
   port: 443
   server: 91.99.81.222
   tls: false
   type: vless
   udp: true
-  uuid: 34eb8260-d0aa-4d3d-8e30-8447fc57a60b
-- name: proxy-14
-  port: 443
-  server: 82.40.62.229
-  tls: false
-  type: vless
-  udp: true
-  uuid: 5bfc6650-8b56-0012-b0e9-b98fc6367c0d
-- name: proxy-15
-  port: 443
-  server: 2.27.209.60
-  tls: false
-  type: vless
-  udp: true
-  uuid: 13b54a52-a29f-4737-9941-26f54a4f87c4
-- name: proxy-16
-  port: 8443
-  server: 160.153.0.7
-  tls: true
-  type: vless
-  udp: true
-  uuid: 7967bf59-57e3-4cde-9898-527b0fe60022
-- name: proxy-17
-  port: 2083
-  server: pon.fereshtehagonahnemikonnad.ir
-  tls: false
-  type: vless
-  udp: true
-  uuid: c949cd77-a313-45ef-97ed-ac7e10511198
-- name: proxy-18
-  port: 443
-  server: 213.130.137.160
-  tls: false
-  type: vless
-  udp: true
-  uuid: b5ca5ab3-8cbc-4ac3-89da-9cd360589ecb
-- name: proxy-19
-  port: 9145
-  server: 85.17.116.115
-  tls: false
-  type: vless
-  udp: true
-  uuid: 969f9d0d-28ca-47d6-a328-cdcf31fae220
-- name: proxy-20
-  port: 19825
-  server: mn11.levikogjgfdd.ir
-  tls: false
-  type: vless
-  udp: true
-  uuid: 2d1ad594-80a4-4bfb-87a6-038e39701f51
-- name: proxy-21
-  port: 10694
-  server: parr.mechanicir.ir
-  tls: false
-  type: vless
-  udp: true
-  uuid: f09ca7ff-bfc2-4f72-8cf4-a3c81100cc15
-- name: proxy-22
-  port: 22223
-  server: 51.45.56.12
-  tls: false
-  type: vless
-  udp: true
-  uuid: e4514801-0d5a-42ba-869f-39bd605aef9e
-- name: proxy-23
-  port: 23576
-  server: 15.204.97.206
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-24
-  port: 6554
-  server: 45.38.19.123
-  tls: false
-  type: vless
-  udp: true
-  uuid: a61abe08-05d6-f72d-58ab-b92576abd790
-- name: proxy-25
-  port: 443
-  server: 45.133.210.83
-  tls: false
-  type: vless
-  udp: true
-  uuid: 392058de-bb7e-44f5-b5bf-9184109cb42b
-- name: proxy-26
-  port: 443
-  server: 199.232.78.159
-  tls: true
-  type: vless
-  udp: true
-  uuid: 29189069-dde3-475b-8cc8-c9bcd30d5c12
-- name: proxy-28
-  port: 443
-  server: de57.tranzit-net.ru
-  tls: false
-  type: vless
-  udp: true
-  uuid: be3c103d-2c93-4f8e-adb9-2631537f80eb
-- name: proxy-29
-  port: 37430
-  server: 217.11.164.92
-  tls: false
-  type: vless
-  udp: true
-  uuid: 8a0c5bc5-4fed-44e9-a9b5-037704d4ad24
-- name: proxy-30
-  port: 62145
-  server: 84.235.175.73
-  tls: false
-  type: vless
-  udp: true
-  uuid: 8fb65472-5957-4f64-ba2d-b5812b2f155a
-- name: proxy-31
-  port: 62145
-  server: 84.235.175.73
-  tls: false
-  type: vless
-  udp: true
-  uuid: 8fb65472-5957-4f64-ba2d-b5812b2f155a
-- name: proxy-32
-  port: 19825
-  server: mn11.levikogjgfdd.ir
-  tls: false
-  type: vless
-  udp: true
-  uuid: 2d1ad594-80a4-4bfb-87a6-038e39701f51
-- name: proxy-33
-  port: 443
-  server: ez-b9162f.ezaccess1ff8a1f.workers.dev
-  tls: true
-  type: vless
-  udp: true
-  uuid: f87e4b12-6977-0c0e-e865-67acd95b0341
-- name: proxy-34
-  port: 80
-  server: 172.66.132.44
-  tls: false
-  type: vless
-  udp: true
-  uuid: 5459f68e-d914-4b31-93a3-ecdf638b7a5b
-- name: proxy-37
-  port: 443
-  server: bg5.univesalsrv.com
-  tls: false
-  type: vless
-  udp: true
-  uuid: 2f35965a-9a9b-45fd-ba32-987296dfb6be
+  uuid: 0a9a4f2a-4144-4147-9018-d44627088ac8
 - name: proxy-38
-  port: 23576
-  server: 51.158.206.86
+  port: 2444
+  server: 31.76.79.118
   tls: false
   type: vless
   udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
+  uuid: fc1ee51e-72ec-4af0-ab0f-540c9e22427b
 - name: proxy-39
   port: 443
-  server: qavi.vip3333.ir
+  server: 129.121.95.159
   tls: true
   type: vless
   udp: true
-  uuid: 4fa09921-d361-40cb-9774-96c3038d3870
+  uuid: f6190ff2-864c-46cf-ac16-93908c069b75
 - name: proxy-40
   port: 443
-  server: 66.154.102.234
+  server: 95.154.196.63
   tls: false
   type: vless
   udp: true
-  uuid: 8db91fcf-cdc5-4b12-bbd3-746e389f8d11
+  uuid: bae47c97-9bc1-48f6-a133-a383ee71c12e
 - name: proxy-41
-  port: 2086
-  server: 188.114.98.215
-  tls: false
-  type: vless
-  udp: true
-  uuid: d028eaf5-c5ef-49a0-85c6-4f4816af8053
-- name: proxy-42
-  port: 6554
-  server: 37.221.79.61
-  tls: false
-  type: vless
-  udp: true
-  uuid: a61abe08-05d6-f72d-58ab-b92576abd790
-- name: proxy-43
-  port: 8080
-  server: 108.162.198.178
-  tls: false
-  type: vless
-  udp: true
-  uuid: 47fcef29-ab4e-4aa6-932b-d95a18f28a4e
-- name: proxy-44
   port: 443
   server: 84.32.189.22
   tls: false
   type: vless
   udp: true
   uuid: f73681a4-1654-446f-a7eb-bda3bfd9e521
-- name: proxy-45
-  port: 443
-  server: 78.129.150.216
+- name: proxy-43
+  port: 8087
+  server: download.mehdi-cpp.ir
   tls: false
   type: vless
   udp: true
-  uuid: 7ec31525-7ac3-4597-8f39-a2d4edc46342
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
+- name: proxy-46
+  port: 443
+  server: www.firedance.cn
+  tls: true
+  type: vless
+  udp: true
+  uuid: 5ba437f3-f2f4-42e6-be33-5c144eb11b83
+- name: proxy-47
+  port: 8443
+  server: store.mehdi-cpp.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: f13639f5-19e2-414a-8b0e-7b712c593b65
+- name: proxy-48
+  port: 443
+  server: freevpn35-266.up.railway.app
+  tls: true
+  type: vless
+  udp: true
+  uuid: e0d07faf-4486-47fb-b987-1ed7abdc40bf
+- name: proxy-49
+  port: 443
+  server: 185.110.189.172
+  tls: false
+  type: vless
+  udp: true
+  uuid: 64570902-4eb6-48ac-8b58-f61a3fd95fdf
 proxy-groups:
 - interval: 120
   name: AUTO
   proxies:
-  - proxy-0
-  - proxy-1
+  - proxy-2
   - proxy-3
   - proxy-4
   - proxy-5
+  - proxy-6
   - proxy-7
+  - proxy-8
   - proxy-9
   - proxy-10
   - proxy-11
@@ -303,7 +332,6 @@ proxy-groups:
   - proxy-16
   - proxy-17
   - proxy-18
-  - proxy-19
   - proxy-20
   - proxy-21
   - proxy-22
@@ -311,6 +339,7 @@ proxy-groups:
   - proxy-24
   - proxy-25
   - proxy-26
+  - proxy-27
   - proxy-28
   - proxy-29
   - proxy-30
@@ -318,25 +347,29 @@ proxy-groups:
   - proxy-32
   - proxy-33
   - proxy-34
+  - proxy-35
+  - proxy-36
   - proxy-37
   - proxy-38
   - proxy-39
   - proxy-40
   - proxy-41
-  - proxy-42
   - proxy-43
-  - proxy-44
-  - proxy-45
+  - proxy-46
+  - proxy-47
+  - proxy-48
+  - proxy-49
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: SELECT
   proxies:
-  - proxy-0
-  - proxy-1
+  - proxy-2
   - proxy-3
   - proxy-4
   - proxy-5
+  - proxy-6
   - proxy-7
+  - proxy-8
   - proxy-9
   - proxy-10
   - proxy-11
@@ -347,7 +380,6 @@ proxy-groups:
   - proxy-16
   - proxy-17
   - proxy-18
-  - proxy-19
   - proxy-20
   - proxy-21
   - proxy-22
@@ -355,6 +387,7 @@ proxy-groups:
   - proxy-24
   - proxy-25
   - proxy-26
+  - proxy-27
   - proxy-28
   - proxy-29
   - proxy-30
@@ -362,15 +395,18 @@ proxy-groups:
   - proxy-32
   - proxy-33
   - proxy-34
+  - proxy-35
+  - proxy-36
   - proxy-37
   - proxy-38
   - proxy-39
   - proxy-40
   - proxy-41
-  - proxy-42
   - proxy-43
-  - proxy-44
-  - proxy-45
+  - proxy-46
+  - proxy-47
+  - proxy-48
+  - proxy-49
   - AUTO
   - DIRECT
   type: select
