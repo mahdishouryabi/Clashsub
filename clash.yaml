@@ -3,374 +3,320 @@ log-level: info
 mixed-port: 7890
 mode: rule
 proxies:
-- name: proxy-0
-  port: 443
-  server: 178.83.31.93
+- name: proxy-1
+  port: 8088
+  server: pol-hhasca.ramcalshoping.ir
   tls: false
   type: vless
   udp: true
-  uuid: 4a97788b-5d8a-410c-875c-ba36930e185e
-- name: proxy-1
+  uuid: ff1dcb64-f13d-4ccd-a3c6-055218f7490b
+- name: proxy-2
   port: 443
-  server: 188.114.97.6
+  server: 172.67.241.225
   tls: true
   type: vless
   udp: true
-  uuid: 1c94a079-e41d-48d3-b5b6-d8f7f761a00d
-- name: proxy-2
-  port: 80
-  server: is.hivaphone.ir
-  tls: false
-  type: vless
-  udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
-- name: proxy-3
-  port: 443
-  server: 5.181.171.2
-  tls: false
-  type: vless
-  udp: true
-  uuid: 8e6acce9-8b56-7190-d491-7d84f8189e26
+  uuid: 9b18ccef-b9e0-41d1-8990-9d970569e142
 - name: proxy-4
   port: 443
-  server: 151.242.168.182
-  tls: false
-  type: vless
-  udp: true
-  uuid: 56b04d24-c894-4c47-9821-1826235b1f8e
-- name: proxy-5
-  port: 443
-  server: 152.44.32.138
+  server: k2.cloud--vpn.site
   tls: true
   type: vless
   udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
-- name: proxy-7
-  port: 80
-  server: 57.131.32.191
+  uuid: d9eda159-18d6-4457-8983-55523a21658c
+- name: proxy-5
+  port: 443
+  server: 7306ab60-tla000-tlvr2y-1imi4.hk3.hyhuawei.com
   tls: false
   type: vless
   udp: true
-  uuid: 1e280316-0408-47c4-b058-05b8f1f17f02
+  uuid: 40fb1315-191a-11ed-b0ca-f23c91cfbbc9
+- name: proxy-6
+  port: 443
+  server: vj37-1936vtw.fincore.top
+  tls: false
+  type: vless
+  udp: true
+  uuid: 5e8e81ac-a1c4-4543-b81e-651bf9872b54
+- name: proxy-7
+  port: 443
+  server: 162.128.157.164
+  tls: false
+  type: vless
+  udp: true
+  uuid: 5e8e81ac-a1c4-4543-b81e-651bf9872b54
 - name: proxy-9
+  port: 443
+  server: 109.169.76.39
+  tls: false
+  type: vless
+  udp: true
+  uuid: 0fcbc45d-acdc-40cf-9a66-961c00f5b4a5
+- name: proxy-10
+  port: 2083
+  server: 178.105.61.61
+  tls: false
+  type: vless
+  udp: true
+  uuid: cb077bf2-70b7-457b-af42-27cdc3e0e544
+- name: proxy-12
+  port: 443
+  server: 86.38.214.86
+  tls: true
+  type: vless
+  udp: true
+  uuid: eae02a50-e329-4647-926e-8439e685f317
+- name: proxy-14
+  port: 443
+  server: 194.34.175.218
+  tls: false
+  type: vless
+  udp: true
+  uuid: 6429d27e-a7d4-4e04-ae57-e88243fbbfe3
+- name: proxy-16
+  port: 443
+  server: 188.137.182.98
+  tls: false
+  type: vless
+  udp: true
+  uuid: d9d0f208-d582-41d5-bb7b-742671402810
+- name: proxy-17
+  port: 2087
+  server: vnet.korluma.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: fa80d79a-0410-4e1c-8bc1-1f855e794860
+- name: proxy-19
+  port: 1819
+  server: 188.213.197.1
+  tls: true
+  type: vless
+  udp: true
+  uuid: 0265873e-0ec7-4d73-9ce7-152df2df75f0
+- name: proxy-20
+  port: 443
+  server: www.hxino.com
+  tls: true
+  type: vless
+  udp: true
+  uuid: 00f8cbcc-bf10-418b-a842-35519f460c7f
+- name: proxy-21
+  port: 2086
+  server: 104.20.5.15
+  tls: false
+  type: vless
+  udp: true
+  uuid: b7e98669-e242-c129-5c6e-c6492f4bdd39
+- name: proxy-23
   port: 8585
   server: 168.119.103.176
   tls: false
   type: vless
   udp: true
   uuid: 459a27d0-8782-48b8-8048-564afcd03196
-- name: proxy-10
-  port: 35705
-  server: junction.proxy.rlwy.net
+- name: proxy-24
+  port: 2087
+  server: vnet.korluma.ir
   tls: false
   type: vless
   udp: true
-  uuid: 1ab1702d-f60d-4f06-bf63-a7063c17a0e7
-- name: proxy-11
-  port: 4100
-  server: 193.233.217.22
+  uuid: fa80d79a-0410-4e1c-8bc1-1f855e794860
+- name: proxy-25
+  port: 443
+  server: nl.cloudtechone.org
   tls: false
   type: vless
   udp: true
-  uuid: 2aa7f4b1-e859-46d0-b8ac-8587811ab7b1
-- name: proxy-12
-  port: 8443
-  server: oslomeow.nethcloud.top
+  uuid: 2b2ea9d8-501e-4b79-8fd9-19bff6ed5cf5
+- name: proxy-27
+  port: 22224
+  server: 13.134.183.49
   tls: false
   type: vless
   udp: true
-  uuid: a34b5e88-cf0d-4c01-8199-2d1002d3c787
-- name: proxy-13
-  port: 8080
-  server: 185.143.233.238
+  uuid: e4514801-0d5a-42ba-869f-39bd605aef9e
+- name: proxy-28
+  port: 16154
+  server: 66.33.22.226
   tls: false
   type: vless
   udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
-- name: proxy-14
+  uuid: canonizedsaint
+- name: proxy-30
+  port: 443
+  server: 169.40.42.225
+  tls: false
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- name: proxy-31
+  port: 8088
+  server: az-hti-de.ramzshadi.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: ff1dcb64-f13d-4ccd-a3c6-055218f7490b
+- name: proxy-34
+  port: 47827
+  server: p.jigilibaw.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: 0e48c2ba-bd4c-4244-af7e-124d2fea8447
+- name: proxy-35
+  port: 443
+  server: 213.155.20.83
+  tls: false
+  type: vless
+  udp: true
+  uuid: 6fb79584-30b8-4888-b358-98f7ef6b8697
+- name: proxy-36
+  port: 443
+  server: 86.38.214.86
+  tls: true
+  type: vless
+  udp: true
+  uuid: eae02a50-e329-4647-926e-8439e685f317
+- name: proxy-37
   port: 80
-  server: 198.41.209.41
+  server: 104.16.246.20
+  tls: false
+  type: vless
+  udp: true
+  uuid: 7d96f544-c496-41cf-dd61-337f0aff062a
+- name: proxy-38
+  port: 443
+  server: 95.85.253.208
+  tls: false
+  type: vless
+  udp: true
+  uuid: 568addfa-796a-40f8-820d-a071ee2ca50a
+- name: proxy-41
+  port: 443
+  server: 169.40.42.16
+  tls: false
+  type: vless
+  udp: true
+  uuid: d65cc14c-f53f-4fe2-b262-97856601319c
+- name: proxy-42
+  port: 80
+  server: 104.16.69.245
   tls: false
   type: vless
   udp: true
   uuid: 435bda4c-fe5e-42c9-a3ad-15334943b38a
-- name: proxy-15
-  port: 443
-  server: 199.232.78.159
-  tls: true
-  type: vless
-  udp: true
-  uuid: dd5d048d-4389-4a97-9b99-c4041e473d94
-- name: proxy-16
-  port: 443
-  server: am.matialz.ir
-  tls: true
-  type: vless
-  udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
-- name: proxy-17
-  port: 443
-  server: 217.16.31.218
-  tls: false
-  type: vless
-  udp: true
-  uuid: af9c2bcf-fe68-4379-9c78-6e5f1b4af0e2
-- name: proxy-18
-  port: 10086
-  server: 204.216.216.23
-  tls: false
-  type: vless
-  udp: true
-  uuid: 9f0285ee-20ca-4953-bcdb-86a920652923
-- name: proxy-19
-  port: 23576
-  server: 51.158.206.26
-  tls: false
-  type: vless
-  udp: true
-  uuid: 48ff2b70-e180-582f-8866-d9a2edeed5f5
-- name: proxy-20
-  port: 443
-  server: 151.242.168.180
-  tls: false
-  type: vless
-  udp: true
-  uuid: 05020afd-d476-406b-8950-ee7dd63a6e64
-- name: proxy-21
-  port: 7444
-  server: 78.159.247.166
-  tls: false
-  type: vless
-  udp: true
-  uuid: 0764541b-3e57-4b47-954b-51e996fae5fc
-- name: proxy-22
-  port: 443
-  server: eu-central-de2.hanvpn.biz
-  tls: false
-  type: vless
-  udp: true
-  uuid: d9d0f208-d582-41d5-bb7b-742671402810
-- name: proxy-23
-  port: 7444
-  server: 78.159.247.166
-  tls: false
-  type: vless
-  udp: true
-  uuid: 0764541b-3e57-4b47-954b-51e996fae5fc
-- name: proxy-24
-  port: 443
-  server: mail.blu.qd.je
-  tls: false
-  type: vless
-  udp: true
-  uuid: a6a9ef5d-dff9-404f-9afa-d0499e1dc5f7
-- name: proxy-26
-  port: 443
-  server: 104.21.83.140
-  tls: true
-  type: vless
-  udp: true
-  uuid: ef5c5d5c-08c6-4549-b05e-d1ff29ecc8ba
-- name: proxy-27
-  port: 443
-  server: 217.16.31.218
-  tls: false
-  type: vless
-  udp: true
-  uuid: af9c2bcf-fe68-4379-9c78-6e5f1b4af0e2
-- name: proxy-28
-  port: 443
-  server: qq.utiltools.site
-  tls: false
-  type: vless
-  udp: true
-  uuid: 4054fdc2-ee80-4419-8a8e-d937df4719e2
-- name: proxy-29
-  port: 443
-  server: 94.237.100.167
-  tls: true
-  type: vless
-  udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
-- name: proxy-30
-  port: 443
-  server: 151.242.168.182
-  tls: false
-  type: vless
-  udp: true
-  uuid: 56b04d24-c894-4c47-9821-1826235b1f8e
-- name: proxy-32
-  port: 2087
-  server: darsadgir.ir
-  tls: true
-  type: vless
-  udp: true
-  uuid: c75775e9-cf53-47b6-9d1d-29c3a46633fd
-- name: proxy-33
-  port: 33743
-  server: 185.223.57.16
-  tls: false
-  type: vless
-  udp: true
-  uuid: b3a11068-1a7e-4643-85de-7c82cce46943
-- name: proxy-35
-  port: 18000
-  server: 84.17.41.2
-  tls: false
-  type: vmess
-  udp: true
-  uuid: f8c8dc3d-0d37-46b0-8b34-a7232882fcfe
-- name: proxy-36
-  port: 443
-  server: 104.19.68.70
-  tls: true
-  type: vless
-  udp: true
-  uuid: d9eb0df3-3190-4447-86b6-656fe5ff1119
-- name: proxy-37
-  port: 443
-  server: 194.110.207.89
-  tls: false
-  type: vless
-  udp: true
-  uuid: a9ad5751-32e3-4fdc-b250-36b594bed2be
-- name: proxy-38
-  port: 443
-  server: 47.253.226.114
-  tls: false
-  type: vless
-  udp: true
-  uuid: 055a1ce8-2a16-4a0d-a2c2-22826c9b2413
-- name: proxy-40
-  port: 3443
-  server: 31.76.31.98
-  tls: false
-  type: vless
-  udp: true
-  uuid: 92089155-6602-4122-86d4-fe6de20e8c4d
-- name: proxy-41
-  port: 80
-  server: 185.143.233.238
-  tls: false
-  type: vless
-  udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
-- name: proxy-42
-  port: 443
-  server: 93.114.98.177
-  tls: true
-  type: vless
-  udp: true
-  uuid: f0c415b0-0178-4754-982e-b6ae60f50aa4
 - name: proxy-43
-  port: 443
-  server: eu-central-de2.hanvpn.biz
+  port: 2093
+  server: vnet.korluma.ir
   tls: false
   type: vless
   udp: true
-  uuid: d9d0f208-d582-41d5-bb7b-742671402810
+  uuid: fa80d79a-0410-4e1c-8bc1-1f855e794860
 - name: proxy-44
-  port: 33743
-  server: 185.223.57.16
+  port: 2083
+  server: vnet.korluma.ir
   tls: false
   type: vless
   udp: true
-  uuid: b3a11068-1a7e-4643-85de-7c82cce46943
+  uuid: fa80d79a-0410-4e1c-8bc1-1f855e794860
 - name: proxy-45
-  port: 443
-  server: tgfree.rush-server.com
+  port: 2019
+  server: free.iranimodem.com
   tls: false
   type: vless
   udp: true
-  uuid: ebd1c0d6-7ff4-4b9f-8692-237517a27a64
+  uuid: 8db6a2c6-fd7f-4248-96db-c332a61920dd
+- name: proxy-46
+  port: 8088
+  server: fr-jan.ramcalshoping.ir
+  tls: false
+  type: vless
+  udp: true
+  uuid: ff1dcb64-f13d-4ccd-a3c6-055218f7490b
+- name: proxy-47
+  port: 443
+  server: 194.110.207.48
+  tls: false
+  type: vless
+  udp: true
+  uuid: 8a00b922-5cb0-4c59-bc54-96738f8e47dc
 proxy-groups:
 - interval: 120
   name: AUTO
   proxies:
-  - proxy-0
   - proxy-1
   - proxy-2
-  - proxy-3
   - proxy-4
   - proxy-5
+  - proxy-6
   - proxy-7
   - proxy-9
   - proxy-10
-  - proxy-11
   - proxy-12
-  - proxy-13
   - proxy-14
-  - proxy-15
   - proxy-16
   - proxy-17
-  - proxy-18
   - proxy-19
   - proxy-20
   - proxy-21
-  - proxy-22
   - proxy-23
   - proxy-24
-  - proxy-26
+  - proxy-25
   - proxy-27
   - proxy-28
-  - proxy-29
   - proxy-30
-  - proxy-32
-  - proxy-33
+  - proxy-31
+  - proxy-34
   - proxy-35
   - proxy-36
   - proxy-37
   - proxy-38
-  - proxy-40
   - proxy-41
   - proxy-42
   - proxy-43
   - proxy-44
   - proxy-45
+  - proxy-46
+  - proxy-47
   type: url-test
   url: http://www.gstatic.com/generate_204
 - name: SELECT
   proxies:
-  - proxy-0
   - proxy-1
   - proxy-2
-  - proxy-3
   - proxy-4
   - proxy-5
+  - proxy-6
   - proxy-7
   - proxy-9
   - proxy-10
-  - proxy-11
   - proxy-12
-  - proxy-13
   - proxy-14
-  - proxy-15
   - proxy-16
   - proxy-17
-  - proxy-18
   - proxy-19
   - proxy-20
   - proxy-21
-  - proxy-22
   - proxy-23
   - proxy-24
-  - proxy-26
+  - proxy-25
   - proxy-27
   - proxy-28
-  - proxy-29
   - proxy-30
-  - proxy-32
-  - proxy-33
+  - proxy-31
+  - proxy-34
   - proxy-35
   - proxy-36
   - proxy-37
   - proxy-38
-  - proxy-40
   - proxy-41
   - proxy-42
   - proxy-43
   - proxy-44
   - proxy-45
+  - proxy-46
+  - proxy-47
   - AUTO
   - DIRECT
   type: select
